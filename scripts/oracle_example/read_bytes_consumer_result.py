@@ -14,3 +14,4 @@ def main():
 
     print(f'Bytes returned by Chainlink node = {bytes_consumer_contract.data()}')
     print(f'Number of bytes returned by Chainlink node = {bytes_consumer_contract.numberOfBytes()}')
+    print(f'Number of times fulfillment function called = {bytes_consumer_contract.numberOfTimesFulfillmentCalled()}')

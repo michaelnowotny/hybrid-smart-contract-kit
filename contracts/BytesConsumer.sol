@@ -17,6 +17,7 @@ contract BytesConsumer is ChainlinkClient {
     // variable bytes returned in a single oracle response
     bytes public data;
     uint256 public numberOfBytes;
+    uint256 public numberOfTimesFulfillmentCalled;
 
     constructor(
         address link,
@@ -52,8 +53,9 @@ contract BytesConsumer is ChainlinkClient {
     public
     recordChainlinkFulfillment(_requestId)
     {
-        emit RequestBytesFulfilled(_requestId, _data);
         data = _data;
         numberOfBytes = _data.length;
+        numberOfTimesFulfillmentCalled++;
+        emit RequestBytesFulfilled(_requestId, _data);
     }
 }
