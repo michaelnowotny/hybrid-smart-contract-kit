@@ -6,7 +6,7 @@ The Chainlink framework enables both off-chain data acquisition and off-chain co
 
 This repository demonstrates how to set up a local hybrid smart contract development environment and provides brief, working, illustrative examples from Chainlink's documentation to help developers get started developing hybrid smart contract without the quirks.
 Unless otherwise indicated, all commands are understood to be run from the project root directory.
-The instructions have been tested on MacOS and Linux Mint 20.2. Windows is not supported.
+The instructions have been tested on macOS 11.6 and Linux Mint 20.2. Windows is not supported.
 
 ## Clone Chainlink Repository
 - Define an environment variable `CHAINLINK_PATH` pointing to the directory the Chainlink repository will be cloned to. Ideally, this lies outside the directory to which `hybrid-smart-contract-kit` has been cloned.
@@ -107,6 +107,7 @@ The instructions have been tested on MacOS and Linux Mint 20.2. Windows is not s
 - From the project's root directory, run `brownie run scripts/infrastructure/fund_chainlink_account --network local`.
 
 ## Testnet Consumer
+Adapted from `https://github.com/sourabhrajsingh/chainlink-remix-workshop/blob/master/ATestnetConsumer.sol`
 ###  Add Get > Uint256 Job on Chainlink Node
 - In a browser, navigate to the Chainlink management console at `localhost:6688`.
 - Select `Jobs` and click `New Job`.
@@ -125,6 +126,8 @@ The instructions have been tested on MacOS and Linux Mint 20.2. Windows is not s
 
 
 ## Crypto Compare External Adapter
+Originally created by Thomas Hodges and published on GitHub at `https://github.com/thodges-gh/CL-EA-Python-Template`.
+
 ### Start and Test the Web Service Running the External Adapter
 - To start the web service, run `python -m hsck.crypto_compare_ea.app`.
 - To test the web service, run `pytest hsck`.
@@ -151,6 +154,8 @@ The instructions have been tested on MacOS and Linux Mint 20.2. Windows is not s
 
 
 ## Multi Word Consumer Example
+See the Chainlink documentation for background information at `https://docs.chain.link/docs/multi-variable-responses/`.
+
 ###  Add Multi Word Consumer Job on Chainlink Node
 - In a browser, navigate to the Chainlink management console at `localhost:6688`.
 - Select `Jobs` and click `New Job`.
