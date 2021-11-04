@@ -1,3 +1,4 @@
 /chainlink/local.env
 /build/
 /hsck.egg-info/
+.idea/
