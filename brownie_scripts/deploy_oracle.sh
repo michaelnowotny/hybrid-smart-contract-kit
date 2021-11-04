@@ -1,0 +1,1 @@
+brownie run scripts/infrastructure/deploy_oracle.py --network local

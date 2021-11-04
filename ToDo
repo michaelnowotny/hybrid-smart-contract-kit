@@ -1,0 +1,2 @@
+- Use different port for Postgres on Chainlink container (and perhaps do not expose to the outside).
+- Switch from geth on host to geth in a docker container (and perhaps let the docker containers communicate on their own network).

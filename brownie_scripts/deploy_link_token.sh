@@ -1,0 +1,1 @@
+brownie run ../scripts/infrastructure/deploy_link_token.py --network local

@@ -1,0 +1,105 @@
+# exclude SafeMath when calculating test coverage
+# https://eth-brownie.readthedocs.io/en/v1.10.3/config.html#exclude_paths
+reports:
+  exclude_contracts:
+    - SafeMath
+dependencies:
+  - smartcontractkit/chainlink@1.0.0
+compiler:
+  solc:
+    remappings:
+      - '@chainlink=smartcontractkit/chainlink@1.0.0'
+# automatically fetch contract sources from Etherscan
+autofetch_sources: True
+# set a custom mnemonic for the development network
+networks:
+  default: local
+  kovan:
+    vrf_coordinator: '0xdD3782915140c8f3b190B5D67eAc6dc5760C46E9'
+    link_token: '0xa36085F69e2889c224210F603D836748e7dC0088'
+    keyhash: '0x6c3699283bda56ad74f6b855546325b68d482e983852a7a82979cc4807b641f4'
+    fee: 100000000000000000
+    eth_usd_price_feed: '0x9326BFA02ADD2366b30bacB125260Af641031331'
+  rinkeby:
+    vrf_coordinator: '0xb3dCcb4Cf7a26f6cf6B120Cf5A73875B7BBc655B'
+    link_token: '0x01be23585060835e02b77ef475b0cc51aa1e0709'
+    keyhash: '0x2ed0feb3e7fd2022120aa84fab1945545a9f2ffc9076fd6156fa96eaff4c1311'
+    fee: 100000000000000000
+    eth_usd_price_feed: '0x8A753747A1Fa494EC906cE90E9f37563A8AF630e'
+  mumbai:
+    vrf_coordinator: '0x8C7382F9D8f56b33781fE506E897a4F1e2d17255'
+    link_token: '0x326C977E6efc84E512bB9C30f76E30c160eD06FB'
+    keyhash: '0x6e75b569a01ef56d18cab6a8e71e6600d6ce853834d4a5748b720d06f878b3a4'
+    fee: 100000000000000
+    eth_usd_price_feed: '0x0715A7794a1dc8e42615F059dD6e406A6594651A'
+  binance:
+    # link_token: ??
+    eth_usd_price_feed: '0x9ef1B8c0E4F7dc8bF5719Ea496883DC6401d5b2e'
+  binance-fork:
+    eth_usd_price_feed: '0x9ef1B8c0E4F7dc8bF5719Ea496883DC6401d5b2e'
+  mainnet-fork:
+    eth_usd_price_feed: '0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419'
+  matic-fork:
+    eth_usd_price_feed: '0xF9680D99D6C9589e2a93a78A04A279e509205945'
+wallets:
+  # Account #0: 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  dev_account_0: '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'
+
+  # Account #1: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+  dev_account_1: '0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d'
+
+  # Account #2: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+  dev_account_2: '0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a'
+
+  # Account #3: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+  dev_account_3: '0x7c852118294e51e653712a81e05800f419141751be58f605c371e15141b007a6'
+
+  # Account #4: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+  dev_account_4: '0x47e179ec197488593b187f80a00eb0da91f1b9d0b13f8733639f19c30a34926a'
+
+  # Account #5: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+  dev_account_5: '0x8b3a350cf5c34c9194ca85829a2df0ec3153be0318b5e2d3348e872092edffba'
+
+  # Account #6: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+  dev_account_6: '0x92db14e403b83dfe3df233f83dfa3a0d7096f21ca9b0d6d6b8d88b2b4ec1564e'
+
+  # Account #7: 0x14dc79964da2c08b23698b3d3cc7ca32193d9955
+  dev_account_7: '0x4bbbf85ce3377467afe5d46f804f221813b2bb87f24d81f60f1fcdbf7cbf4356'
+
+  # Account #8: 0x23618e81e3f5cdf7f54c3d65f7fbc0abf5b21e8f
+  dev_account_8: '0xdbda1821b80551c9d65939329250298aa3472ba22feea921c0cf5d620ea67b97'
+
+  # Account #9: 0xa0ee7a142d267c1f36714e4a8f75612f20a79720
+  dev_account_9: '0x2a871d0798f97d79848a013d4936a73bf4cc922c825d33c1cf7073dff6d409c6'
+
+  # Account #10: 0xbcd4042de499d14e55001ccbb24a551f3b954096
+  dev_account_10: '0xf214f2b2cd398c806f84e317254e0f0b801d0643303237d97a22a48e01628897'
+
+  # Account #11: 0x71be63f3384f5fb98995898a86b02fb2426c5788
+  dev_account_11: '0x701b615bbdfb9de65240bc28bd21bbc0d996645a3dd57e7b12bc2bdf6f192c82'
+
+  # Account #12: 0xfabb0ac9d68b0b445fb7357272ff202c5651694a
+  dev_account_12: '0xa267530f49f8280200edf313ee7af6b827f2a8bce2897751d06a843f644967b1'
+
+  # Account #13: 0x1cbd3b2770909d4e10f157cabc84c7264073c9ec
+  dev_account_13: '0x47c99abed3324a2707c28affff1267e45918ec8c3f20b8aa892e8b065d2942dd'
+
+  # Account #14: 0xdf3e18d64bc6a983f673ab319ccae4f1a57c7097
+  dev_account_14: '0xc526ee95bf44d8fc405a158bb884d9d1238d99f0612e9f33d006bb0789009aaa'
+
+  # Account #15: 0xcd3b766ccdd6ae721141f452c550ca635964ce71
+  dev_account_15: '0x8166f546bab6da521a8369cab06c5d2b9e46670292d85c875ee9ec20e84ffb61'
+
+  # Account #16: 0x2546bcd3c84621e976d8185a91a922ae77ecec30
+  dev_account_16: '0xea6c44ac03bff858b476bba40716402b03e41b8e97e276d1baec7c37d42484a0'
+
+  # Account #17: 0xbda5747bfd65f08deb54cb465eb87d40e51b197e
+  dev_account_17: '0x689af8efa8c651a91ad287602527f3af2fe9f6501a7ac4b061667b5a93e037fd'
+
+  # Account #18: 0xdd2fd4581271e230360230f9337d5c0430bf44c0
+  dev_account_18: '0xde9be858da4a475276426320d5e9262ecfc3ba460bfac56360bfa6c4c28b4ee0'
+
+  # Account #19: 0x8626f6940e2eb28930efb4cef49b2d1f2c9c1199
+  dev_account_19: '0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e'
+
+  # could also do from_mnemonic, and you'd have to change the accounts.add to accounts.from_mnemonic

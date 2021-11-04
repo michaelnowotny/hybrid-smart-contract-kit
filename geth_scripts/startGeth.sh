@@ -1,0 +1,1 @@
+geth --datadir $GETH_DEV_DATA_PATH --networkid 1337 --verbosity 6 --ws --http --http.api personal,eth,net,web3 --http.rpcprefix '/' --dev --dev.period 1 --http.corsdomain "*" --rpc.allow-unprotected-txs
