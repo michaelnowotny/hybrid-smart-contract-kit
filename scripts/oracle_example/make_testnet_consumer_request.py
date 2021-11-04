@@ -19,7 +19,14 @@ def main():
 
     testnet_consumer_contract = ATestnetConsumer[-1]
 
-    print(f'Making request to job id {job_id} at oracle contract deployed at {oracle_contract.address} from a testnet consumer contract deployed at {testnet_consumer_contract.address}')
-    result = testnet_consumer_contract.requestEthereumPrice(oracle_contract.address, job_id, {'from': dev})
+    print(f'Making request to job id {job_id} at oracle contract deployed at '
+          f'{oracle_contract.address} from a testnet consumer contract deployed at '
+          f'{testnet_consumer_contract.address}')
+
+    result = testnet_consumer_contract.requestEthereumPrice(
+        oracle_contract.address,
+        job_id,
+        {'from': dev}
+    )
 
     print(result)
