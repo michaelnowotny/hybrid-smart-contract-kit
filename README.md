@@ -6,7 +6,7 @@ The Chainlink framework enables both off-chain data acquisition and off-chain co
 
 This repository demonstrates how to set up a local hybrid smart contract development environment and provides brief, working, illustrative examples from Chainlink's documentation to help developers get started developing hybrid smart contract without the quirks.
 Unless otherwise indicated, all commands are understood to be run from the project root directory.
-The instructions have been tested on macOS 11.6 and Linux Mint 20.2. Windows is not supported.
+The instructions have been tested on macOS 11.6, Linux Mint 20.2, and Zorin OS 16. Windows is not supported.
 
 ## Clone Chainlink Repository
 - Define an environment variable `CHAINLINK_PATH` pointing to the directory the Chainlink repository will be cloned to. Ideally, this lies outside the directory to which `hybrid-smart-contract-kit` has been cloned.
@@ -30,7 +30,6 @@ The instructions have been tested on macOS 11.6 and Linux Mint 20.2. Windows is 
 - Run `pip install -e .`.
 
 ## Add Networks to Brownie
-
 ### Avalanche
 - Run `brownie networks add Avalanche avax-avash host=http://127.0.0.1:9650/ext/bc/C/rpc chainid=43112 explorer=https://cchain.explorer.avax.network/`.
 
@@ -101,18 +100,24 @@ The instructions have been tested on macOS 11.6 and Linux Mint 20.2. Windows is 
 ## Transfer 10000 AVAX Each on Local Avalanche Node from Pre-Funded Account to Dev Accounts
 - Run `avalanche_scripts/send_avax.sh`.
 
+## !!! IMPORTANT !!!
+- In the following, replace `<NETWORK>` with `local` or `avax-avash`, depending on the blockchain.
+
 ## Deploy LINK Token Contract (Only Needs to be Done on Local Networks, not Public Ones) and add to MetaMask
-- On GETH, either run `./geth_scripts/deploy_link_token.sh` or `brownie run scripts/infrastructure/deploy_link_token.py --network local`.
-- On AvalancheGo, either run `./avalanche_scripts/deploy_link_token.sh` or `brownie run scripts/infrastructure/deploy_link_token.py --network avax-avash`.
+- Either run `brownie run scripts/infrastructure/deploy_link_token.py --network <NETWORK>` or
+  - On GETH, run `./geth_scripts/deploy_link_token.sh` .
+  - On AvalancheGo, run `./avalanche_scripts/deploy_link_token.sh`.
 - Copy the address at which the LINK token has been deployed, click `Import tokens` in MetaMask below the list of all coins and tokens, and paste into the field `Token Contract Address`. Finally, click `Add Custom Token`.
 
 ## Deploy Oracle Contract (Needs to be Done on both Local and Public Networks)
-- On GETH, either run `./geth_scripts/deploy_oracle.sh` or `brownie run scripts/infrastructure/deploy_oracle.py --network local`.
-- On AvalancheGo, either run `./avalanche_scripts/deploy_oracle.sh` or `brownie run scripts/infrastructure/deploy_oracle.py --network avax-avash`.
+- Either run `brownie run scripts/infrastructure/deploy_oracle.py --network <NETWORK>` or
+  - On GETH, run `./geth_scripts/deploy_oracle.sh`.
+  - On AvalancheGo, run `./avalanche_scripts/deploy_oracle.sh`.
 
 ## Deploy Operator Contract (Needs to be Done on both Local and Public Networks)
-- On GETH, either run `./geth_scripts/deploy_operator.sh` or `brownie run scripts/infrastructure/deploy_operator.py --network local`.
-- On AvalancheGo, either run `./avalanche_scripts/deploy_operator.sh` or `brownie run scripts/infrastructure/deploy_operator.py --network avax-avash`.
+- Either run `brownie run scripts/infrastructure/deploy_operator.py --network <NETWORK>` or 
+  - On GETH, run `./geth_scripts/deploy_operator.sh`.
+  - On AvalancheGo, run `./avalanche_scripts/deploy_operator.sh`.
 
 ## Modify `/etc/hosts` on Linux
 - On Linux only, associate `host.docker.internal` with `127.0.0.1` via this line in `/etc/hosts`: `127.0.0.1    localhost host.docker.internal`.
@@ -151,28 +156,26 @@ The instructions have been tested on macOS 11.6 and Linux Mint 20.2. Windows is 
 - In `chainlink` folder run `./chainlink node start -p /cla/.password -a /cla/.api`.
 
 ## Transfer 1000 ETH from Local Development Account to Chainlink Node Account and Set Fulfillment Permission on Oracle Contract
-- On Geth, from the project's root directory, run `brownie run scripts/infrastructure/fund_chainlink_account --network local`.
-- On Avalanche, from the project's root directory, run `brownie run scripts/infrastructure/fund_chainlink_account --network avax-avash`.
+- Run `brownie run scripts/infrastructure/fund_chainlink_account --network <NETWORK>`.
 
 ## Testnet Consumer
 Adapted from `https://github.com/sourabhrajsingh/chainlink-remix-workshop/blob/master/ATestnetConsumer.sol`
+
 ###  Add Get > Uint256 Job on Chainlink Node
 - In a browser, navigate to the Chainlink management console at `localhost:6688`.
 - Select `Jobs` and click `New Job`.
-- To display the oracle contract address, 
-  - On Geth, run `brownie run scripts/infrastructure/print_contract_addresses.py --network local`.
-  - On Avalanche, run `brownie run scripts/infrastructure/print_contract_addresses.py --network avax-avash`.
+- To display the oracle contract address, run `brownie run scripts/infrastructure/print_contract_addresses.py --network <NETWORK>`.
 - Paste the contents of the file `chainlink/TestnetConsumerJob.toml` into the job description and replace `YOUR_ORACLE_CONTRACT_ADDRESS` with the address at which the oracle contract has been deployed.
 - Click `Create Job`.
 
 ###  Deploy A Testnet Consumer Contract and Fund With LINK Tokens
-- Run `brownie run scripts/oracle_example/deploy_testnet_consumer.py --network local`.
+- Run `brownie run scripts/oracle_example/deploy_testnet_consumer.py --network <NETWORK>`.
 
 ###  Initiate Request of Ether Price from Oracle (i.e. call ATestnetConsumer contract which calls the Oracle contract)
-- Run `brownie run scripts/oracle_example/make_testnet_consumer_request.py --network local`.
+- Run `brownie run scripts/oracle_example/make_testnet_consumer_request.py --network <NETWORK>`.
 
 ###  Read Data Returned By Chainlink from A Testnet Consumer Contract
-- Run `brownie run scripts/oracle_example/read_testnet_consumer_result.py --network local`.
+- Run `brownie run scripts/oracle_example/read_testnet_consumer_result.py --network <NETWORK>`.
 
 ## Crypto Compare External Adapter
 Originally created by Thomas Hodges and published on GitHub at `https://github.com/thodges-gh/CL-EA-Python-Template`.
@@ -191,16 +194,15 @@ Originally created by Thomas Hodges and published on GitHub at `https://github.c
 ### Add CryptoCompare Job on Chainlink Node
 - In a browser, navigate to the Chainlink management console at `localhost:6688`.
 - Select `Jobs` and click `New Job`.
-- To display the oracle contract address, run `brownie run scripts/infrastructure/print_contract_addresses.py --network local`.
+- To display the oracle contract address, run `brownie run scripts/infrastructure/print_contract_addresses.py --network <NETWORK>`.
 - Paste the contents of the file `chainlink/CryptoCompareJob.toml` into the job description and replace `YOUR_ORACLE_CONTRACT_ADDRESS` with the address at which the oracle contract has been deployed.
 - Click `Create Job`.
 
 ### Initiate Request To Crypto Compare External Adapter
-- Run `brownie run scripts/oracle_example/make_crypto_compare_ea_request.py --network local`.
+- Run `brownie run scripts/oracle_example/make_crypto_compare_ea_request.py --network <NETWORK>`.
 
 ### Read Data Returned By Chainlink Node via Crypto Compare External Adapter
-- Run `brownie run scripts/oracle_example/read_crypto_compare_ea_result.py --network local`.
-
+- Run `brownie run scripts/oracle_example/read_crypto_compare_ea_result.py --network <NETWORK>`.
 
 ## Multi Word Consumer Example
 See the Chainlink documentation for background information at `https://docs.chain.link/docs/multi-variable-responses/`.
@@ -208,15 +210,15 @@ See the Chainlink documentation for background information at `https://docs.chai
 ###  Add Multi Word Consumer Job on Chainlink Node
 - In a browser, navigate to the Chainlink management console at `localhost:6688`.
 - Select `Jobs` and click `New Job`.
-- To display the operator contract address, run `brownie run scripts/infrastructure/print_contract_addresses.py --network local`.
+- To display the operator contract address, run `brownie run scripts/infrastructure/print_contract_addresses.py --network <NETWORK>`.
 - Paste the contents of the file `chainlink/MultiWordConsumer.toml` into the job description and replace `YOUR_OPERATOR_CONTRACT_ADDRESS` with the address at which the operator contract has been deployed (not the oracle address!).
 - Click `Create Job`.
  
 ###  Deploy Multi Word Consumer Contract and Fund With LINK Tokens
-- Run `brownie run scripts/oracle_example/deploy_multi_word_consumer.py --network local`.
+- Run `brownie run scripts/oracle_example/deploy_multi_word_consumer.py --network <NETWORK>`.
 
 ###  Initiate Request of Ether Price in USD, EUR, and JPY from Operator
-- Run `brownie run scripts/oracle_example/make_multi_word_consumer_request.py --network local`.
+- Run `brownie run scripts/oracle_example/make_multi_word_consumer_request.py --network <NETWORK>`.
 
 ###  Read Data Returned By Chainlink from Multi Word Consumer Contract
-- Run `brownie run scripts/oracle_example/read_multi_word_consumer_result.py --network local`.
+- Run `brownie run scripts/oracle_example/read_multi_word_consumer_result.py --network <NETWORK>`.
