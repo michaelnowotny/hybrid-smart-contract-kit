@@ -26,6 +26,9 @@ The instructions have been tested on macOS 11.6 and Linux Mint 20.2. Windows is 
 
 ## Add Networks to Brownie
 
+### Avalanche
+- Run `brownie networks add Avalanche avax-avash host=http://127.0.0.1:9650/ext/bc/C/rpc chainid=43112 explorer=https://cchain.explorer.avax.network/`.
+
 ### Binance Smart Chain
 - Run `brownie networks add Ethereum binance-smart-chain host=https://bsc-dataseed1.binance.org chainid=56`.
 
