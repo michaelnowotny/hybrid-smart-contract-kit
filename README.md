@@ -102,14 +102,14 @@ The instructions have been tested on macOS 11.6 and Linux Mint 20.2. Windows is 
 - Run `avalanche_scripts/send_avax.sh`.
 
 ## Deploy LINK Token Contract (Only Needs to be Done on Local Networks, not Public Ones) and add to MetaMask
-- Either run `./brownie_scripts/deploy_link_token.sh` or `brownie run scripts/infrastructure/deploy_link_token.py --network local`.
+- Either run `./geth_scripts/deploy_link_token.sh` or `brownie run scripts/infrastructure/deploy_link_token.py --network local`.
 - Copy the address at which the LINK token has been deployed, click `Import tokens` in MetaMask below the list of all coins and tokens, and paste into the field `Token Contract Address`. Finally, click `Add Custom Token`.
 
 ## Deploy Oracle Contract (Needs to be Done on both Local and Public Networks)
-- Either run `./brownie_scripts/deploy_oracle.sh` or `brownie run scripts/infrastructure/deploy_oracle.py --network local`.
+- Either run `./geth_scripts/deploy_oracle.sh` or `brownie run scripts/infrastructure/deploy_oracle.py --network local`.
 
 ## Deploy Operator Contract (Needs to be Done on both Local and Public Networks)
-- Either run `./brownie_scripts/deploy_operator.sh` or `brownie run scripts/infrastructure/deploy_operator.py --network local`.
+- Either run `./geth_scripts/deploy_operator.sh` or `brownie run scripts/infrastructure/deploy_operator.py --network local`.
 
 ## Modify `/etc/hosts` on Linux
 - On Linux only, associate `host.docker.internal` with `127.0.0.1` via this line in `/etc/hosts`: `127.0.0.1    localhost host.docker.internal`.
