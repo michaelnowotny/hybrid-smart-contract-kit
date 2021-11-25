@@ -16,6 +16,11 @@ The instructions have been tested on macOS 11.6 and Linux Mint 20.2. Windows is 
 - Change into `chainlink` directory and run `git checkout master`.
 - Remember to navigate back to the `hybrid-smart-contract-kit` root directory.
 
+## Define Local Avalanche Blockchain Storage Directory
+- Create an empty directory into which avalanchego should save the blockchain.
+- Store this directory in an environment variable called `AVALANCHE_DEV_DATA_PATH`.
+- Remember to restart your terminal or resource your environment file.
+
 ## Define Local Ethereum Blockchain Storage Directory
 - Create an empty directory into which geth should save the blockchain.
 - Store this directory in an environment variable called `GETH_DEV_DATA_PATH`.
@@ -26,6 +31,9 @@ The instructions have been tested on macOS 11.6 and Linux Mint 20.2. Windows is 
 
 ## Add Networks to Brownie
 
+### Avalanche
+- Run `brownie networks add Avalanche avax-avash host=http://127.0.0.1:9650/ext/bc/C/rpc chainid=43112 explorer=https://cchain.explorer.avax.network/`.
+
 ### Binance Smart Chain
 - Run `brownie networks add Ethereum binance-smart-chain host=https://bsc-dataseed1.binance.org chainid=56`.
 
@@ -35,12 +43,27 @@ The instructions have been tested on macOS 11.6 and Linux Mint 20.2. Windows is 
 ### Local Ethereum Blockchain Node
 - Run `brownie networks add Ethereum local host=http://localhost:8545 chainid=1337`.
 
+## Install Avalanche Client Software
+- On Linux, follow the instructions at `https://github.com/ava-labs/avalanchego`
+- On MacOs, download the binary from `https://github.com/ava-labs/avalanchego/releases/tag/v1.7.0` and install
+- 
 ## Install Ethereum Client Software
 - On Mac, via homebrew, run `brew install geth`.
 - On Linux, follow the instructions at `https://geth.ethereum.org/docs/install-and-build/installing-geth#install-on-ubuntu-via-ppas`.
 
 ## Start Local Ethereum Node
-- From the project's root directory, navigate to `geth_scripts` and run `startGeth.sh`.
+- From the project's root directory, navigate to `geth_scripts` and run `./startGeth.sh`.
+
+## Start Local AvalancheGo Node
+- From the project's root directory, navigate to `avalanche_scripts` and run `./start_avalanche.sh`.
+- To make sure that the node is running, execute `./status.sh`.
+
+## Set Up Local Avalanche Test Account (Only Required the First Time on the Local Testnet)
+- The following steps are taken from these instructions: `https://docs.avax.network/build/tutorials/platform/fund-a-local-test-network`
+- Navigate to `avalanche_scripts`.
+- Run `./create_account.sh` to create a user `Avalanche` with password `Ava-123;X5`.
+- Run './check_x_chain_balance.sh' to check the balance on the X-Chain
+- Run './check_c_chain_balance.sh' to check the balance on the C-Chain
 
 ## Set Up MetaMask
 ### Connect MetaMask Wallet to Polygon Mumbai Matic Testnet ###
@@ -50,15 +73,27 @@ The instructions have been tested on macOS 11.6 and Linux Mint 20.2. Windows is 
 - Currency Symbol (optional): "ETH"
 - Block Explorer URL (optional): "https://explorer-mumbai.maticvigil.com/"
 
-### Connect MetaMask Wallet Using Network Localhost ###
+### Connect MetaMask Wallet to Local AvalancheGo Node ###
+- Network Name: "Avalanche Local"
+- New RPC URL: "http://localhost:9650/ext/bc/C/rpc"
+- Chain ID: "43112"
+- Currency Symbol (optional): "AVAX"
+- Block Explorer URL (optional): ""
+
+### Connect MetaMask Wallet to Local GETH Node ###
 - Network Name: "Localhost 8545"
 - New RPC URL: "http://localhost:8545"
 - Chain ID: "1337"
 - Currency Symbol (optional): "ETH"
 - Block Explorer URL (optional): ""
 
-### Add Local Dev Account
+### Add Dev Account for Local GETH Node 
 - In MetaMask select `Import Account` and paste the private key `0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80`.
+- Name the account `Local GETH Development Account`.
+
+### Add Dev Account for Local AvalancheGo Node 
+- In MetaMask select `Import Account` and paste the private key `0x56289e99c94b6912bfc12adc093c9b51124f0dc54ac7a766b2bc5ccf558d8027`.
+- Name the account `Local Avalanche Development Account`
 
 ## Transfer 10000 ETH on Local Ethereum Node From Coinbase To Development Account
 - Navigate to `geth_scripts` and run `./sendEth.sh`. - Remember to navigate back to the `hybrid-smart-contract-kit` root directory.

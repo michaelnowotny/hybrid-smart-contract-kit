@@ -26,6 +26,8 @@ networks:
     keyhash: '0x2ed0feb3e7fd2022120aa84fab1945545a9f2ffc9076fd6156fa96eaff4c1311'
     fee: 100000000000000000
     eth_usd_price_feed: '0x8A753747A1Fa494EC906cE90E9f37563A8AF630e'
+  avax-avash:
+    ava_dev_account: '0x56289e99c94b6912bfc12adc093c9b51124f0dc54ac7a766b2bc5ccf558d8027'
   mumbai:
     vrf_coordinator: '0x8C7382F9D8f56b33781fE506E897a4F1e2d17255'
     link_token: '0x326C977E6efc84E512bB9C30f76E30c160eD06FB'
