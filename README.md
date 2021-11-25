@@ -138,18 +138,19 @@ The instructions have been tested on macOS 11.6, Linux Mint 20.2, and Zorin OS 1
   - Change into `chainlink` folder.  
   - Run `yarn install`.
   - Run `make install`.
-- In a different terminal, type `docker container ls - a` and store the name of the container in the environment variable `CHAINLINK_DOCKER_CONTAINER_NAME`.
+
+[comment]: <> (- In a different terminal, type `docker container ls - a` and store the name of the container in the environment variable `CHAINLINK_DOCKER_CONTAINER_NAME`.)
 - In `chainlink` folder run `./chainlink node start -p /cla/.password -a /cla/.api`.
 - In a web browser navigate to `http://localhost:6688`.
 - Login with username `admin@example.com` and password `password`.
 - Navigate to gear icon, select `Key Management`, and copy the regular account address.
-- For Geth, store the copied account address in an environment variable `CHAINLINK_NODE_ACCOUNT_ADDRESS`.
+- For Geth, store the copied account address in an environment variable `GETH_CHAINLINK_NODE_ACCOUNT_ADDRESS`.
 - For Avalanche, store the copied account address in an environment variable `AVALANCHE_CHAINLINK_NODE_ACCOUNT_ADDRESS`.
 
 ## To Start the Chainlink Docker Container After the First Setup
 - Start a new terminal or resource your environment file.
 - On Linux, remember to add `sudo` before the docker command.
-- In the following, the placeholder `CHAINLINK_DOCKER_CONTAINER_NAME` refers to `chainlink_avalanche` for Avalanche and `chainlink_geth` for GETH.
+- In the following, the placeholder `<CHAINLINK_DOCKER_CONTAINER_NAME>` refers to `chainlink_avalanche` for Avalanche and `chainlink_geth` for GETH.
 - To start a stopped container, type `docker start <CHAINLINK_DOCKER_CONTAINER_NAME>`.
 - To attach a terminal, type `docker attach $CHAINLINK_DOCKER_CONTAINER_NAME`.
 - Navigate to `chainlink` folder via `cd chainlink`.

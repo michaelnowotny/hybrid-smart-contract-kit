@@ -9,7 +9,7 @@ def main():
     if network.show_active() == 'avax-avash':
         chainlink_node_account_address_env_name = 'AVALANCHE_CHAINLINK_NODE_ACCOUNT_ADDRESS'
     else:
-        chainlink_node_account_address_env_name = 'CHAINLINK_NODE_ACCOUNT_ADDRESS'
+        chainlink_node_account_address_env_name = 'GETH_CHAINLINK_NODE_ACCOUNT_ADDRESS'
 
     chainlink_node_account_address = os.getenv(chainlink_node_account_address_env_name)
     if chainlink_node_account_address is None:
