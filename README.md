@@ -98,6 +98,9 @@ The instructions have been tested on macOS 11.6 and Linux Mint 20.2. Windows is 
 ## Transfer 10000 ETH on Local Ethereum Node From Coinbase To Development Account
 - Navigate to `geth_scripts` and run `./sendEth.sh`. - Remember to navigate back to the `hybrid-smart-contract-kit` root directory.
 
+## Transfer 10000 AVAX Each on Local Avalanche Node from Pre-Funded Account to Dev Accounts
+- Run `avalanche_scripts/send_avax.sh`.
+
 ## Deploy LINK Token Contract (Only Needs to be Done on Local Networks, not Public Ones) and add to MetaMask
 - Either run `./brownie_scripts/deploy_link_token.sh` or `brownie run scripts/infrastructure/deploy_link_token.py --network local`.
 - Copy the address at which the LINK token has been deployed, click `Import tokens` in MetaMask below the list of all coins and tokens, and paste into the field `Token Contract Address`. Finally, click `Add Custom Token`.
