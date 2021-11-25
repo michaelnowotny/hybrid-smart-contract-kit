@@ -127,8 +127,8 @@ The instructions have been tested on macOS 11.6 and Linux Mint 20.2. Windows is 
   - On Mac: Create container from docker image: `docker run --name chainlink_geth -p 6688:6688 -p 5432:5432 --add-host=host.docker.internal:host-gateway -it --env-file=chainlink/local.env -v $CHAINLINK_PATH:/chainlink chainlink_node`.
   - On Linux: Create container from docker image: `sudo docker run --name chainlink_geth -p 6688:6688 -p 5432:5432 --network=host -it --env-file=chainlink/local.env -v $CHAINLINK_PATH:/chainlink chainlink_node`.
 - For Avalanche
-  - On Mac: Create container from docker image: `docker run --name chainlink_avalanche -p 6688:6688 -p 5432:5432 --add-host=host.docker.internal:host-gateway -it --env-file=chainlink/local.env -v $CHAINLINK_PATH:/chainlink chainlink_node_avalanche`.
-  - On Linux: Create container from docker image: `sudo docker run --name chainlink_avalanche -p 6688:6688 -p 5432:5432 --network=host -it --env-file=chainlink/local.env -v $CHAINLINK_PATH:/chainlink chainlink_node_avalanche`.
+  - On Mac: Create container from docker image: `docker run --name chainlink_avalanche -p 6688:6688 -p 5432:5432 --add-host=host.docker.internal:host-gateway -it --env-file=chainlink/local.env -v $CHAINLINK_PATH:/chainlink chainlink_node`.
+  - On Linux: Create container from docker image: `sudo docker run --name chainlink_avalanche -p 6688:6688 -p 5432:5432 --network=host -it --env-file=chainlink/local.env -v $CHAINLINK_PATH:/chainlink chainlink_node`.
 - Compile chainlink:
   - Change into `chainlink` folder.  
   - Run `yarn install`.
