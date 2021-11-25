@@ -102,14 +102,17 @@ The instructions have been tested on macOS 11.6 and Linux Mint 20.2. Windows is 
 - Run `avalanche_scripts/send_avax.sh`.
 
 ## Deploy LINK Token Contract (Only Needs to be Done on Local Networks, not Public Ones) and add to MetaMask
-- Either run `./geth_scripts/deploy_link_token.sh` or `brownie run scripts/infrastructure/deploy_link_token.py --network local`.
+- On GETH, either run `./geth_scripts/deploy_link_token.sh` or `brownie run scripts/infrastructure/deploy_link_token.py --network local`.
+- On AvalancheGo, either run `./avalanche_scripts/deploy_link_token.sh` or `brownie run scripts/infrastructure/deploy_link_token.py --network avax-avash`.
 - Copy the address at which the LINK token has been deployed, click `Import tokens` in MetaMask below the list of all coins and tokens, and paste into the field `Token Contract Address`. Finally, click `Add Custom Token`.
 
 ## Deploy Oracle Contract (Needs to be Done on both Local and Public Networks)
-- Either run `./geth_scripts/deploy_oracle.sh` or `brownie run scripts/infrastructure/deploy_oracle.py --network local`.
+- On GETH, either run `./geth_scripts/deploy_oracle.sh` or `brownie run scripts/infrastructure/deploy_oracle.py --network local`.
+- On AvalancheGo, either run `./avalanche_scripts/deploy_oracle.sh` or `brownie run scripts/infrastructure/deploy_oracle.py --network avax-avash`.
 
 ## Deploy Operator Contract (Needs to be Done on both Local and Public Networks)
-- Either run `./geth_scripts/deploy_operator.sh` or `brownie run scripts/infrastructure/deploy_operator.py --network local`.
+- On GETH, either run `./geth_scripts/deploy_operator.sh` or `brownie run scripts/infrastructure/deploy_operator.py --network local`.
+- On AvalancheGo, either run `./avalanche_scripts/deploy_operator.sh` or `brownie run scripts/infrastructure/deploy_operator.py --network avax-avash`.
 
 ## Modify `/etc/hosts` on Linux
 - On Linux only, associate `host.docker.internal` with `127.0.0.1` via this line in `/etc/hosts`: `127.0.0.1    localhost host.docker.internal`.
@@ -120,8 +123,12 @@ The instructions have been tested on macOS 11.6 and Linux Mint 20.2. Windows is 
 ## Build Chainlink Node (This only needs to be done the first time!)
 - On Mac, from the project root directory type `docker build -f chainlink/chainlink_dockerfile --tag chainlink_node .` to build a docker image for the chainlink node.
 - On Linux, add `sudo` before the docker command.
-- On Mac: Create container from docker image: `docker run -p 6688:6688 -p 5432:5432 --add-host=host.docker.internal:host-gateway -it --env-file=chainlink/local.env -v $CHAINLINK_PATH:/chainlink chainlink_node`.
-- On Linux: Create container from docker image: `sudo docker run -p 6688:6688 -p 5432:5432 --network=host -it --env-file=chainlink/local.env -v $CHAINLINK_PATH:/chainlink chainlink_node`.
+- For GETH:
+  - On Mac: Create container from docker image: `docker run --name chainlink_geth -p 6688:6688 -p 5432:5432 --add-host=host.docker.internal:host-gateway -it --env-file=chainlink/local.env -v $CHAINLINK_PATH:/chainlink chainlink_node`.
+  - On Linux: Create container from docker image: `sudo docker run --name chainlink_geth -p 6688:6688 -p 5432:5432 --network=host -it --env-file=chainlink/local.env -v $CHAINLINK_PATH:/chainlink chainlink_node`.
+- For Avalanche
+  - On Mac: Create container from docker image: `docker run --name chainlink_avalanche -p 6688:6688 -p 5432:5432 --add-host=host.docker.internal:host-gateway -it --env-file=chainlink/local.env -v $CHAINLINK_PATH:/chainlink chainlink_node_avalanche`.
+  - On Linux: Create container from docker image: `sudo docker run --name chainlink_avalanche -p 6688:6688 -p 5432:5432 --network=host -it --env-file=chainlink/local.env -v $CHAINLINK_PATH:/chainlink chainlink_node_avalanche`.
 - Compile chainlink:
   - Change into `chainlink` folder.  
   - Run `yarn install`.
@@ -131,25 +138,30 @@ The instructions have been tested on macOS 11.6 and Linux Mint 20.2. Windows is 
 - In a web browser navigate to `http://localhost:6688`.
 - Login with username `admin@example.com` and password `password`.
 - Navigate to gear icon, select `Key Management`, and copy the regular account address.
-- Store the copied account address in an environment variable `CHAINLINK_NODE_ACCOUNT_ADDRESS`.
+- For Geth, store the copied account address in an environment variable `CHAINLINK_NODE_ACCOUNT_ADDRESS`.
+- For Avalanche, store the copied account address in an environment variable `AVALANCHE_CHAINLINK_NODE_ACCOUNT_ADDRESS`.
 
 ## To Start the Chainlink Docker Container After the First Setup
 - Start a new terminal or resource your environment file.
 - On Linux, remember to add `sudo` before the docker command.
-- To start a stopped container, type `docker start $CHAINLINK_DOCKER_CONTAINER_NAME`.
+- In the following, the placeholder `CHAINLINK_DOCKER_CONTAINER_NAME` refers to `chainlink_avalanche` for Avalanche and `chainlink_geth` for GETH.
+- To start a stopped container, type `docker start <CHAINLINK_DOCKER_CONTAINER_NAME>`.
 - To attach a terminal, type `docker attach $CHAINLINK_DOCKER_CONTAINER_NAME`.
 - Navigate to `chainlink` folder via `cd chainlink`.
 - In `chainlink` folder run `./chainlink node start -p /cla/.password -a /cla/.api`.
 
 ## Transfer 1000 ETH from Local Development Account to Chainlink Node Account and Set Fulfillment Permission on Oracle Contract
-- From the project's root directory, run `brownie run scripts/infrastructure/fund_chainlink_account --network local`.
+- On Geth, from the project's root directory, run `brownie run scripts/infrastructure/fund_chainlink_account --network local`.
+- On Avalanche, from the project's root directory, run `brownie run scripts/infrastructure/fund_chainlink_account --network avax-avash`.
 
 ## Testnet Consumer
 Adapted from `https://github.com/sourabhrajsingh/chainlink-remix-workshop/blob/master/ATestnetConsumer.sol`
 ###  Add Get > Uint256 Job on Chainlink Node
 - In a browser, navigate to the Chainlink management console at `localhost:6688`.
 - Select `Jobs` and click `New Job`.
-- To display the oracle contract address, run `brownie run scripts/infrastructure/print_contract_addresses.py --network local`.
+- To display the oracle contract address, 
+  - On Geth, run `brownie run scripts/infrastructure/print_contract_addresses.py --network local`.
+  - On Avalanche, run `brownie run scripts/infrastructure/print_contract_addresses.py --network avax-avash`.
 - Paste the contents of the file `chainlink/TestnetConsumerJob.toml` into the job description and replace `YOUR_ORACLE_CONTRACT_ADDRESS` with the address at which the oracle contract has been deployed.
 - Click `Create Job`.
 
@@ -161,7 +173,6 @@ Adapted from `https://github.com/sourabhrajsingh/chainlink-remix-workshop/blob/m
 
 ###  Read Data Returned By Chainlink from A Testnet Consumer Contract
 - Run `brownie run scripts/oracle_example/read_testnet_consumer_result.py --network local`.
-
 
 ## Crypto Compare External Adapter
 Originally created by Thomas Hodges and published on GitHub at `https://github.com/thodges-gh/CL-EA-Python-Template`.

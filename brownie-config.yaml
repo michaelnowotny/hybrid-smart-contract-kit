@@ -27,6 +27,7 @@ networks:
     fee: 100000000000000000
     eth_usd_price_feed: '0x8A753747A1Fa494EC906cE90E9f37563A8AF630e'
   avax-avash:
+    gas_price: 225000000000
     ava_dev_account: '0x56289e99c94b6912bfc12adc093c9b51124f0dc54ac7a766b2bc5ccf558d8027'
   mumbai:
     vrf_coordinator: '0x8C7382F9D8f56b33781fE506E897a4F1e2d17255'
