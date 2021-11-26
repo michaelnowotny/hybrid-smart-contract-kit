@@ -43,7 +43,12 @@ The instructions have been tested on macOS 11.6, Linux Mint 20.2, and Zorin OS 1
 - Run `brownie networks add Ethereum local host=http://localhost:8545 chainid=1337`.
 
 ## Install Avalanche Client Software
-- On Linux, follow the instructions at `https://github.com/ava-labs/avalanchego`
+- On Linux, follow the instructions at `https://github.com/ava-labs/avalanchego`, i.e.  
+  `sudo su -`    
+  `wget -O - https://downloads.avax.network/avalanchego.gpg.key | apt-key add -`  
+  `echo "deb https://downloads.avax.network/apt bionic main" > /etc/apt/sources.list.d/avalanche.list`  
+  `sudo apt update`  
+  `sudo apt install avalanchego`  
 - On MacOs, download the binary from `https://github.com/ava-labs/avalanchego/releases/tag/v1.7.0` and install
 
 ## Install Ethereum Client Software
