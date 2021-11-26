@@ -45,7 +45,7 @@ The instructions have been tested on macOS 11.6, Linux Mint 20.2, and Zorin OS 1
 ## Install Avalanche Client Software
 - On Linux, follow the instructions at `https://github.com/ava-labs/avalanchego`
 - On MacOs, download the binary from `https://github.com/ava-labs/avalanchego/releases/tag/v1.7.0` and install
-- 
+
 ## Install Ethereum Client Software
 - On Mac, via homebrew, run `brew install geth`.
 - On Linux, follow the instructions at `https://geth.ethereum.org/docs/install-and-build/installing-geth#install-on-ubuntu-via-ppas`.
@@ -138,8 +138,6 @@ The instructions have been tested on macOS 11.6, Linux Mint 20.2, and Zorin OS 1
   - Change into `chainlink` folder.  
   - Run `yarn install`.
   - Run `make install`.
-
-[comment]: <> (- In a different terminal, type `docker container ls - a` and store the name of the container in the environment variable `CHAINLINK_DOCKER_CONTAINER_NAME`.)
 - In `chainlink` folder run `./chainlink node start -p /cla/.password -a /cla/.api`.
 - In a web browser navigate to `http://localhost:6688`.
 - Login with username `admin@example.com` and password `password`.
